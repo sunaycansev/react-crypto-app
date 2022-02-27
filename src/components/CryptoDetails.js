@@ -91,6 +91,9 @@ const CryptoDetails = () => {
       icon: <ExclamationCircleOutlined />,
     },
   ];
+  if (isFetching) {
+    return "Loading..";
+  }
   return (
     <Col className="coin-detail-container">
       <Col className="coin-heading-container">
@@ -115,16 +118,47 @@ const CryptoDetails = () => {
       {/*  Line chart....*/}
       <Col className="stats-container">
         <Col className="coin-value-statistics">
-          <Col className="oin-value-statistics-heading">
+          <Col className="coin-value-statistics-heading">
             <Title level={3} className="coin-details-heading">
               {cryptoDetails.name} Value Statistics
             </Title>
             <p>An overview showing the stats of {cryptoDetails.name}</p>
           </Col>
           {stats.map(({ icon, title, value }) => (
-            <Col></Col>
+            <Col className="coin-stats" key={cryptoDetails.uuid}>
+              <Col className="coin-stats-name">
+                <Text>{icon}</Text>
+                <Text>{title}</Text>
+              </Col>
+              <Text className="stats">{value}</Text>
+            </Col>
           ))}
         </Col>
+        <Col className="other-stats-info">
+          <Col className="coin-value-statistics-heading">
+            <Title level={3} className="coin-details-heading">
+              Other Statistics
+            </Title>
+            <p>Showing the stats of all cryptocurrencies.</p>
+          </Col>
+          {genericStats.map(({ icon, title, value }) => (
+            <Col className="coin-stats" key={value}>
+              <Col className="coin-stats-name">
+                <Text>{icon}</Text>
+                <Text>{title}</Text>
+              </Col>
+              <Text className="stats">{value}</Text>
+            </Col>
+          ))}
+        </Col>
+      </Col>
+      <Col className="coin-desc-link">
+        <Row className="coin-desc">
+          <Title level={3} className="coin-details-heading">
+            What is {cryptoDetails.name}
+            {HTMLReactParser(cryptoDetails.description)}
+          </Title>
+        </Row>
       </Col>
     </Col>
   );
