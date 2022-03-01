@@ -3,7 +3,6 @@ import { Routes, Route, Link } from "react-router-dom";
 import { Layout, Typography, Space } from "antd";
 import {
   Navbar,
-  Exchanges,
   HomePage,
   Cryptocurrencies,
   News,
@@ -22,7 +21,6 @@ const App = () => {
           <div className="routes">
             <Routes>
               <Route exact element={<HomePage />} path="/" />
-              <Route element={<Exchanges />} path="/exchanges" />
               <Route element={<Cryptocurrencies />} path="/cryptocurrencies" />
               <Route element={<CryptoDetails />} path="/crypto/:coinId" />
               <Route element={<News />} path="/news" />
